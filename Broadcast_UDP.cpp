@@ -19,9 +19,9 @@ Broadcast_UDP::Broadcast_UDP()
 
 	sockaddr_length = sizeof(struct sockaddr_in);
 
-	m_recv_addr.sin_family = AF_INET;
-	m_recv_addr.sin_port = htons(PORT);
-	m_recv_addr.sin_addr.s_addr = inet_addr("255.255.255.255");
+	m_send_addr.sin_family = AF_INET;
+	m_send_addr.sin_port = htons(PORT);
+	m_send_addr.sin_addr.s_addr = inet_addr("255.255.255.255");
 }
 
 Broadcast_UDP::~Broadcast_UDP()
@@ -36,7 +36,7 @@ void Broadcast_UDP::Broadcast(std::string message)
 	if(string_length != NULL){
 		char* send_message = (char*)malloc(string_length + 1);
 		strcpy(send_message, message.c_str());
-		sendto(m_socket, send_message, strlen(send_message) + 1, 0, (sockaddr*)&m_recv_addr, sizeof(m_recv_addr));
+		sendto(m_socket, send_message, strlen(send_message) + 1, 0, (sockaddr*)&m_send_addr, sizeof(m_send_addr));
 		free(send_message);
 	}
 	else

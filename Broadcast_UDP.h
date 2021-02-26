@@ -13,7 +13,6 @@ private:
 	WSADATA m_wsa;
 	SOCKET m_socket;
 	struct sockaddr_in m_recv_addr;
-	struct sockaddr_in m_send_addr;
 	int m_error = 0;
 	char m_broadcast = '1';
 };
